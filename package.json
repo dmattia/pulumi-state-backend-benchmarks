@@ -1,0 +1,11 @@
+{
+  "name": "pulumi-state-backend-benchmarks",
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "s3-backend"
+  ],
+  "devDependencies": {
+    "ts-node": "=10.4.0",
+    "typescript": "=4.4.4"
+  }
+}
