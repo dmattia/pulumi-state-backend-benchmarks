@@ -24,4 +24,4 @@ jobs:
 
       # Install Pulumi and deploy the infra code
       - uses: pulumi/action-install-pulumi-cli@v1.0.1
-      - run: yarn workspace @app/s3-backend exec pulumi up --stack test --refresh
+      - run: yarn workspace @app/s3-backend exec pulumi up --stack test --yes --refresh
