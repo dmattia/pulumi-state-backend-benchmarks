@@ -43,32 +43,34 @@ jobs:
       - uses: pulumi/action-install-pulumi-cli@v1.0.1
       - run: pulumi plugin install resource aws v5.9.2
       - run: pulumi login s3://pulumi-state-backend-benchmarks-state
-        if: ${{ matrix.name }} == 's3'
+        if: matrix.name == 's3'
       - run: yarn workspace ${{ matrix.workspace }} exec pulumi up --stack test --yes --refresh
+        env:
+          PULUMI_CONFIG_PASSPHRASE: 'not_set'
 
-  benchmark-destroy:
-    runs-on: ubuntu-latest
-    name: Pulumi destroy ${{ matrix.name }}
-    needs: benchmark-up
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: s3
-            workspace: '@app/s3-backend-test'
-          - name: pulumi
-            workspace: '@app/pulumi-backend-test'
-    steps:
-      - uses: actions/checkout@master
-      - uses: ./.github/commands/yarn_install
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - uses: pulumi/action-install-pulumi-cli@v1.0.1
-      - run: pulumi plugin install resource aws v5.9.2
-      - run: pulumi login s3://pulumi-state-backend-benchmarks-state
-        if: ${{ matrix.name }} == 's3'
-      - run: yarn workspace ${{ matrix.workspace }} exec pulumi destroy --stack test --yes --refresh
+  # benchmark-destroy:
+  #   runs-on: ubuntu-latest
+  #   name: Pulumi destroy ${{ matrix.name }}
+  #   needs: benchmark-up
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - name: s3
+  #           workspace: '@app/s3-backend-test'
+  #         - name: pulumi
+  #           workspace: '@app/pulumi-backend-test'
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - uses: ./.github/commands/yarn_install
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: us-east-1
+  #     - uses: pulumi/action-install-pulumi-cli@v1.0.1
+  #     - run: pulumi plugin install resource aws v5.9.2
+  #     - run: pulumi login s3://pulumi-state-backend-benchmarks-state
+  #       if: ${{ matrix.name }} == 's3'
+  #     - run: yarn workspace ${{ matrix.workspace }} exec pulumi destroy --stack test --yes --refresh
