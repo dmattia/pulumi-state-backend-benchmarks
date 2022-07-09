@@ -37,6 +37,8 @@ jobs:
 
   benchmark-s3-backend:
     runs-on: ubuntu-latest
+    env:
+      PULUMI_CONFIG_PASSPHRASE: true
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
