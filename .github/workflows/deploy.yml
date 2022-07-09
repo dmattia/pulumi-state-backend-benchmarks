@@ -34,3 +34,19 @@ jobs:
       - uses: pulumi/action-install-pulumi-cli@v1.0.1
       - run: pulumi plugin install resource aws v5.9.2
       - run: yarn workspace @app/pulumi-backend-test exec pulumi up --stack test --yes --refresh
+
+  benchmark-s3-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./.github/commands/yarn_install
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - uses: pulumi/action-install-pulumi-cli@v1.0.1
+      - run: pulumi plugin install resource aws v5.9.2
+      - run: pulumi login s3://pulumi-state-backend-benchmarks-state
+      - run: yarn workspace @app/s3-backend-test exec pulumi up --stack test --yes --refresh

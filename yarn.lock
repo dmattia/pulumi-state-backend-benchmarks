@@ -946,6 +946,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"s3-backend-test-751cfd@workspace:s3-backend-test":
+  version: 0.0.0-use.local
+  resolution: "s3-backend-test-751cfd@workspace:s3-backend-test"
+  dependencies:
+    "@pulumi/aws": ^5.6.0
+    "@pulumi/pulumi": ^3.32.3
+    "@types/node": =14.14.31
+    ts-node: =10.4.0
+    typescript: =4.4.4
+  languageName: unknown
+  linkType: soft
+
 "sax@npm:1.2.1":
   version: 1.2.1
   resolution: "sax@npm:1.2.1"

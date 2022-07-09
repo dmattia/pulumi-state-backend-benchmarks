@@ -1,0 +1,7 @@
+name: 
+description: s3-backend for this repo
+runtime:
+  name: nodejs
+  options:
+    typescript: true
+main: src/

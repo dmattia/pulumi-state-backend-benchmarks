@@ -3,6 +3,7 @@
   "packageManager": "yarn@3.2.1",
   "workspaces": [
     "s3-backend",
+    "s3-backend-test",
     "pulumi-backend-test"
   ],
   "devDependencies": {

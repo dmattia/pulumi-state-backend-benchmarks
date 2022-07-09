@@ -5,6 +5,7 @@
     "references": [
       { "path": "s3-backend" },
       { "path": "pulumi-backend-test" },
+      { "path": "s3-backend-test" },
     ]
   }
   
