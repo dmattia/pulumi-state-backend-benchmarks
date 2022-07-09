@@ -14,7 +14,7 @@ const table = new aws.dynamodb.Table("example", {
     tableName: table.name,
     hashKey: table.hashKey,
     item: JSON.stringify({
-      [table.hashKey]: { S: i.toString() },
+      id: { S: i.toString() },
     }),
   })
 })
