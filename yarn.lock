@@ -17,6 +17,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@app/s3-backend-test@workspace:s3-backend-test":
+  version: 0.0.0-use.local
+  resolution: "@app/s3-backend-test@workspace:s3-backend-test"
+  dependencies:
+    "@pulumi/aws": ^5.6.0
+    "@pulumi/pulumi": ^3.32.3
+    "@types/node": =14.14.31
+    ts-node: =10.4.0
+    typescript: =4.4.4
+  languageName: unknown
+  linkType: soft
+
 "@app/s3-backend@workspace:s3-backend":
   version: 0.0.0-use.local
   resolution: "@app/s3-backend@workspace:s3-backend"
@@ -945,18 +957,6 @@ __metadata:
   checksum: 5656f4d0bedcf8eb52685c1abdf8fbe73a1603bb1160a24d716e27a57f6cecbe2432ff9c89c2bd57542c3a7b9d14b1882b73bfe2e9d7849c9a4c0b8b39f02b8b
   languageName: node
   linkType: hard
-
-"s3-backend-test-751cfd@workspace:s3-backend-test":
-  version: 0.0.0-use.local
-  resolution: "s3-backend-test-751cfd@workspace:s3-backend-test"
-  dependencies:
-    "@pulumi/aws": ^5.6.0
-    "@pulumi/pulumi": ^3.32.3
-    "@types/node": =14.14.31
-    ts-node: =10.4.0
-    typescript: =4.4.4
-  languageName: unknown
-  linkType: soft
 
 "sax@npm:1.2.1":
   version: 1.2.1

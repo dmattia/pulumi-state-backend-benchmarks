@@ -1,5 +1,5 @@
-name: 
-description: s3-backend for this repo
+name: S3 backend test
+description: Performance test for s3
 runtime:
   name: nodejs
   options:

@@ -29,7 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:s3-backend"\
       },\
       {\
-        "name": "s3-backend-test-751cfd",\
+        "name": "@app/s3-backend-test",\
         "reference": "workspace:s3-backend-test"\
       }\
     ],\
@@ -38,8 +38,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "fallbackExclusionList": [\
       ["@app/pulumi-backend-test", ["workspace:pulumi-backend-test"]],\
       ["@app/s3-backend", ["workspace:s3-backend"]],\
-      ["pulumi-state-backend-benchmarks", ["workspace:."]],\
-      ["s3-backend-test-751cfd", ["workspace:s3-backend-test"]]\
+      ["@app/s3-backend-test", ["workspace:s3-backend-test"]],\
+      ["pulumi-state-backend-benchmarks", ["workspace:."]]\
     ],\
     "fallbackPool": [\
     ],\
@@ -73,6 +73,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./s3-backend/",\
           "packageDependencies": [\
             ["@app/s3-backend", "workspace:s3-backend"],\
+            ["@pulumi/aws", "npm:5.9.2"],\
+            ["@pulumi/pulumi", "npm:3.35.3"],\
+            ["@types/node", "npm:14.14.31"],\
+            ["ts-node", "virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0"],\
+            ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=7ad353"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@app/s3-backend-test", [\
+        ["workspace:s3-backend-test", {\
+          "packageLocation": "./s3-backend-test/",\
+          "packageDependencies": [\
+            ["@app/s3-backend-test", "workspace:s3-backend-test"],\
             ["@pulumi/aws", "npm:5.9.2"],\
             ["@pulumi/pulumi", "npm:3.35.3"],\
             ["@types/node", "npm:14.14.31"],\
@@ -1120,20 +1134,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
           ],\
           "linkType": "HARD"\
-        }]\
-      ]],\
-      ["s3-backend-test-751cfd", [\
-        ["workspace:s3-backend-test", {\
-          "packageLocation": "./s3-backend-test/",\
-          "packageDependencies": [\
-            ["s3-backend-test-751cfd", "workspace:s3-backend-test"],\
-            ["@pulumi/aws", "npm:5.9.2"],\
-            ["@pulumi/pulumi", "npm:3.35.3"],\
-            ["@types/node", "npm:14.14.31"],\
-            ["ts-node", "virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0"],\
-            ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=7ad353"]\
-          ],\
-          "linkType": "SOFT"\
         }]\
       ]],\
       ["sax", [\
