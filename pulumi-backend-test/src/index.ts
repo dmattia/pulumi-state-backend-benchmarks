@@ -9,12 +9,12 @@ const table = new aws.dynamodb.Table("example", {
   serverSideEncryption: { enabled: true },
 });
 
-[...new Array(100)].forEach((_, i) => {
+[...new Array(500)].forEach((_, i) => {
   new aws.dynamodb.TableItem(i.toString(), {
     tableName: table.name,
     hashKey: table.hashKey,
     item: JSON.stringify({
-      id: { S: i.toString() },
+      [table.hashKey]: { S: i.toString() },
     }),
   })
 })
