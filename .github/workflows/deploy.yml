@@ -74,3 +74,5 @@ jobs:
       - run: pulumi login s3://pulumi-state-backend-benchmarks-state
         if: matrix.name == 's3'
       - run: yarn workspace ${{ matrix.workspace }} exec pulumi destroy --stack test --yes --refresh
+        env:
+          PULUMI_CONFIG_PASSPHRASE: 'not_set'
