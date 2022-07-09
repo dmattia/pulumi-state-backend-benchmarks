@@ -9,7 +9,7 @@ const table = new aws.dynamodb.Table("example", {
   serverSideEncryption: { enabled: true },
 });
 
-new Array(100).forEach((_, i) => {
+[...new Array(100)].forEach((_, i) => {
   new aws.dynamodb.TableItem(i.toString(), {
     tableName: table.name,
     hashKey: table.hashKey,
