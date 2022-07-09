@@ -2,7 +2,8 @@
   "name": "pulumi-state-backend-benchmarks",
   "packageManager": "yarn@3.2.1",
   "workspaces": [
-    "s3-backend"
+    "s3-backend",
+    "pulumi-backend-test"
   ],
   "devDependencies": {
     "ts-node": "=10.4.0",

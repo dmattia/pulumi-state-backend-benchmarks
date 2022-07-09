@@ -1,0 +1,10 @@
+{
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+      "outDir": "../build/@app/pulumi-backend-test",
+      "tsBuildInfoFile": "../build/@app/pulumi-backend-test.tsbuildinfo",
+      "rootDir": "src",
+      "types": ["node"]
+    },
+  }
+  

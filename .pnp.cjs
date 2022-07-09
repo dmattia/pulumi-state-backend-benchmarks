@@ -21,6 +21,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:."\
       },\
       {\
+        "name": "@app/pulumi-backend-test",\
+        "reference": "workspace:pulumi-backend-test"\
+      },\
+      {\
         "name": "@app/s3-backend",\
         "reference": "workspace:s3-backend"\
       }\
@@ -28,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
+      ["@app/pulumi-backend-test", ["workspace:pulumi-backend-test"]],\
       ["@app/s3-backend", ["workspace:s3-backend"]],\
       ["pulumi-state-backend-benchmarks", ["workspace:."]]\
     ],\
@@ -44,6 +49,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT"\
         }]\
       ]],\
+      ["@app/pulumi-backend-test", [\
+        ["workspace:pulumi-backend-test", {\
+          "packageLocation": "./pulumi-backend-test/",\
+          "packageDependencies": [\
+            ["@app/pulumi-backend-test", "workspace:pulumi-backend-test"],\
+            ["@pulumi/aws", "npm:5.9.2"],\
+            ["@pulumi/pulumi", "npm:3.35.3"],\
+            ["@types/node", "npm:14.14.31"],\
+            ["ts-node", "virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0"],\
+            ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=7ad353"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
       ["@app/s3-backend", [\
         ["workspace:s3-backend", {\
           "packageLocation": "./s3-backend/",\
@@ -52,7 +71,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@pulumi/aws", "npm:5.9.2"],\
             ["@pulumi/pulumi", "npm:3.35.3"],\
             ["@types/node", "npm:14.14.31"],\
-            ["ts-node", "virtual:60e519d79ad6ed6be4b5030a1f6ed1d5268164b42d5fd88ca955947538ad978b64c691884fbc2fc651e9dfa0f899b0cb51450218f918a53c530777b7e85d926e#npm:10.4.0"],\
+            ["ts-node", "virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0"],\
             ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=7ad353"]\
           ],\
           "linkType": "SOFT"\
@@ -1302,10 +1321,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:60e519d79ad6ed6be4b5030a1f6ed1d5268164b42d5fd88ca955947538ad978b64c691884fbc2fc651e9dfa0f899b0cb51450218f918a53c530777b7e85d926e#npm:10.4.0", {\
-          "packageLocation": "./.yarn/__virtual__/ts-node-virtual-c585125475/0/cache/ts-node-npm-10.4.0-04cb6e2279-3933ac0a93.zip/node_modules/ts-node/",\
+        ["virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0", {\
+          "packageLocation": "./.yarn/__virtual__/ts-node-virtual-6a8565c36e/0/cache/ts-node-npm-10.4.0-04cb6e2279-3933ac0a93.zip/node_modules/ts-node/",\
           "packageDependencies": [\
-            ["ts-node", "virtual:60e519d79ad6ed6be4b5030a1f6ed1d5268164b42d5fd88ca955947538ad978b64c691884fbc2fc651e9dfa0f899b0cb51450218f918a53c530777b7e85d926e#npm:10.4.0"],\
+            ["ts-node", "virtual:ae4c4ad8ff4763d910a3e9bb4ca4066178531aedb255ba7d7c99ce89484e99415d2efb2a08f3bd953f600d8ca00ca9b31995aa3cd2bda4d013b227a649829f7b#npm:10.4.0"],\
             ["@cspotcode/source-map-support", "npm:0.7.0"],\
             ["@swc/core", null],\
             ["@swc/wasm", null],\

@@ -4,6 +4,7 @@
     "files": [],
     "references": [
       { "path": "s3-backend" },
+      { "path": "pulumi-backend-test" },
     ]
   }
   
