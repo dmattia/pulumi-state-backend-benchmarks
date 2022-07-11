@@ -52,25 +52,23 @@ jobs:
         with:
           go-version: '>=1.17.0'
         if: matrix.use-fork == 'true'
-      - run: |
+      - name: Install Pulumi fork from dmattia/pulumi
+        if: matrix.use-fork == 'true'
+        run: |
           git clone https://github.com/dmattia/pulumi
           cd pulumi
           git checkout dmattia/s3_concurrency
           make install
-        if: matrix.use-fork == 'true'
 
       - run: pulumi plugin install resource aws v5.9.2
       - run: pulumi login s3://pulumi-state-backend-benchmarks-state
         if: matrix.name == 's3' || matrix.name == 's3-fork'
 
-      - run: pulumi version
-      - run: yarn workspace ${{ matrix.workspace }} exec pulumi stack init --stack ${{ matrix.name }}
+      - run: |
+          yarn workspace ${{ matrix.workspace }} exec pulumi stack init --stack ${{ matrix.name }} || echo "stack already exists"
+          yarn workspace ${{ matrix.workspace }} exec pulumi up --stack ${{ matrix.name }} --yes --refresh
         env:
           PULUMI_CONFIG_PASSPHRASE: 'not_set'
-
-      # - run: yarn workspace ${{ matrix.workspace }} exec pulumi up --stack ${{ matrix.name }} --yes --refresh
-      #   env:
-      #     PULUMI_CONFIG_PASSPHRASE: 'not_set'
 
   benchmark-destroy:
     runs-on: ubuntu-latest
