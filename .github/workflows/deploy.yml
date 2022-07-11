@@ -59,14 +59,15 @@ jobs:
           make install
         if: matrix.use-fork == 'true'
 
+      - run: pulumi plugin install resource aws v5.9.2
+      - run: pulumi login s3://pulumi-state-backend-benchmarks-state
+        if: matrix.name == 's3' || matrix.name == 's3-fork'
+
       - run: pulumi version
       - run: yarn workspace ${{ matrix.workspace }} exec pulumi stack init --stack ${{ matrix.name }}
         env:
           PULUMI_CONFIG_PASSPHRASE: 'not_set'
 
-      # - run: pulumi plugin install resource aws v5.9.2
-      # - run: pulumi login s3://pulumi-state-backend-benchmarks-state
-      #   if: matrix.name == 's3' || matrix.name == 's3-fork'
       # - run: yarn workspace ${{ matrix.workspace }} exec pulumi up --stack ${{ matrix.name }} --yes --refresh
       #   env:
       #     PULUMI_CONFIG_PASSPHRASE: 'not_set'
