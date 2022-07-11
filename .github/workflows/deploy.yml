@@ -27,15 +27,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - name: s3
-          #   workspace: '@app/s3-backend-test'
-          #   use-fork: 'false'
+          - name: s3
+            workspace: '@app/s3-backend-test'
+            use-fork: 'false'
           - name: s3-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'true'
-          # - name: pulumi
-          #   workspace: '@app/pulumi-backend-test'
-          #   use-fork: 'false'
+          - name: pulumi
+            workspace: '@app/pulumi-backend-test'
+            use-fork: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
@@ -73,20 +73,20 @@ jobs:
   benchmark-destroy:
     runs-on: ubuntu-latest
     name: Pulumi destroy ${{ matrix.name }}
-    needs: benchmark-up
+    # needs: benchmark-up
     strategy:
       fail-fast: false
       matrix:
         include:
-          - name: s3
-            workspace: '@app/s3-backend-test'
-            use-fork: 'false'
-          - name: s3
+          # - name: s3
+          #   workspace: '@app/s3-backend-test'
+          #   use-fork: 'false'
+          - name: s3-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'false'
-          - name: pulumi
-            workspace: '@app/pulumi-backend-test'
-            use-fork: 'false'
+          # - name: pulumi
+          #   workspace: '@app/pulumi-backend-test'
+          #   use-fork: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
