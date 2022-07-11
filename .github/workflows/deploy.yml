@@ -55,10 +55,14 @@ jobs:
       - run: |
           git clone https://github.com/dmattia/pulumi
           cd pulumi
+          git checkout dmattia/s3_concurrency
           make install
         if: matrix.use-fork == 'true'
 
       - run: pulumi version
+      - run: yarn workspace ${{ matrix.workspace }} exec pulumi stack init --stack ${{ matrix.name }}
+        env:
+          PULUMI_CONFIG_PASSPHRASE: 'not_set'
 
       # - run: pulumi plugin install resource aws v5.9.2
       # - run: pulumi login s3://pulumi-state-backend-benchmarks-state
