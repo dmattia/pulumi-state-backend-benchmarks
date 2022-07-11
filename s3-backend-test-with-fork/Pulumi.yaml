@@ -1,0 +1,7 @@
+name: S3 backend test with Fork
+description: Performance test for s3 with fork
+runtime:
+  name: nodejs
+  options:
+    typescript: true
+main: src/

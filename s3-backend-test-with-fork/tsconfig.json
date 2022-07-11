@@ -1,0 +1,10 @@
+{
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+      "outDir": "../build/@app/s3-backend-test-with-fork",
+      "tsBuildInfoFile": "../build/@app/s3-backend-test-with-fork.tsbuildinfo",
+      "rootDir": "src",
+      "types": ["node"]
+    },
+  }
+  

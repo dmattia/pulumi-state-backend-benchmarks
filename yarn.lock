@@ -17,6 +17,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@app/s3-backend-test-with-fork@workspace:s3-backend-test-with-fork":
+  version: 0.0.0-use.local
+  resolution: "@app/s3-backend-test-with-fork@workspace:s3-backend-test-with-fork"
+  dependencies:
+    "@pulumi/aws": ^5.6.0
+    "@pulumi/pulumi": ^3.32.3
+    "@types/node": =14.14.31
+    ts-node: =10.4.0
+    typescript: =4.4.4
+  languageName: unknown
+  linkType: soft
+
 "@app/s3-backend-test@workspace:s3-backend-test":
   version: 0.0.0-use.local
   resolution: "@app/s3-backend-test@workspace:s3-backend-test"

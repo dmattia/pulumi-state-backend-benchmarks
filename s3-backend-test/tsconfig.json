@@ -1,8 +1,8 @@
 {
     "extends": "../tsconfig.base.json",
     "compilerOptions": {
-      "outDir": "../build/@app/",
-      "tsBuildInfoFile": "../build/@app/.tsbuildinfo",
+      "outDir": "../build/@app/s3-backend-test",
+      "tsBuildInfoFile": "../build/@app/s3-backend-test.tsbuildinfo",
       "rootDir": "src",
       "types": ["node"]
     },

@@ -29,8 +29,13 @@ jobs:
         include:
           - name: s3
             workspace: '@app/s3-backend-test'
+            use-fork: 'false'
+          - name: s3-fork
+            workspace: '@app/s3-backend-test'
+            use-fork: 'true'
           - name: pulumi
             workspace: '@app/pulumi-backend-test'
+            use-fork: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
@@ -40,13 +45,27 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+      
       - uses: pulumi/action-install-pulumi-cli@v1.0.1
-      - run: pulumi plugin install resource aws v5.9.2
-      - run: pulumi login s3://pulumi-state-backend-benchmarks-state
-        if: matrix.name == 's3'
-      - run: yarn workspace ${{ matrix.workspace }} exec pulumi up --stack test --yes --refresh
-        env:
-          PULUMI_CONFIG_PASSPHRASE: 'not_set'
+        if: matrix.use-fork == 'false'
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.17.0'
+        if: matrix.use-fork == 'true'
+      - run: |
+          git clone https://github.com/dmattia/pulumi
+          cd pulumi
+          make install
+        if: matrix.use-fork == 'true'
+
+      - run: pulumi version
+
+      # - run: pulumi plugin install resource aws v5.9.2
+      # - run: pulumi login s3://pulumi-state-backend-benchmarks-state
+      #   if: matrix.name == 's3' || matrix.name == 's3-fork'
+      # - run: yarn workspace ${{ matrix.workspace }} exec pulumi up --stack ${{ matrix.name }} --yes --refresh
+      #   env:
+      #     PULUMI_CONFIG_PASSPHRASE: 'not_set'
 
   benchmark-destroy:
     runs-on: ubuntu-latest

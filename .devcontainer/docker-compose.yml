@@ -12,6 +12,9 @@ services:
       - shell-history:/commandhistory
     command: /bin/bash -c "sleep infinity"
     network_mode: "host"
+    environment:
+      GOROOT: '/usr/local/go'
+      GOBIN: '/usr/local/go/bin'
 
 volumes:
   shell-history:

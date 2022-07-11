@@ -4,6 +4,7 @@
   "workspaces": [
     "s3-backend",
     "s3-backend-test",
+    "s3-backend-test-with-fork",
     "pulumi-backend-test"
   ],
   "devDependencies": {

@@ -23,3 +23,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt-get install -y python3-pip \
   && pip install --upgrade pip \
   && pip install pre-commit
+RUN curl -L "https://go.dev/dl/go1.18.3.linux-arm64.tar.gz" -o "go1.18.3.linux-arm64.tar.gz" \
+  && tar -C /usr/local -xzf "go1.18.3.linux-arm64.tar.gz" \
+  && rm "go1.18.3.linux-arm64.tar.gz"
