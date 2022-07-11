@@ -30,23 +30,18 @@ jobs:
           # - name: s3
           #   workspace: '@app/s3-backend-test'
           #   use-fork: 'false'
-          #   use-aws-v2: 'false'
           # - name: s3-fork
           #   workspace: '@app/s3-backend-test-with-fork'
           #   use-fork: 'true'
-          #   use-aws-v2: 'false'
           - name: s3-v2
             workspace: '@app/s3-backend-test'
             use-fork: 'false'
-            use-aws-v2: 'true'
           - name: s3-v2-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'true'
-            use-aws-v2: 'true'
           # - name: pulumi
           #   workspace: '@app/pulumi-backend-test'
           #   use-fork: 'false'
-          #   use-aws-v2: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
@@ -74,10 +69,10 @@ jobs:
       - run: pulumi plugin install resource aws v5.9.2
       - name: Login to the S3 backend with AWS SDK v1
         run: pulumi login s3://pulumi-state-backend-benchmarks-state
-        if: matrix.name == 's3' || matrix.name == 's3-fork' && matrix.use-aws-v2 == 'false'
+        if: matrix.name == 's3' || matrix.name == 's3-fork'
       - name: Login to the S3 backend with AWS SDK v2
         run: pulumi login s3://pulumi-state-backend-benchmarks-state?awssdk=v2
-        if: matrix.name == 's3' || matrix.name == 's3-fork' && matrix.use-aws-v2 == 'true'
+        if: matrix.name == 's3-v2' || matrix.name == 's3-v2-fork'
 
       - run: |
           yarn workspace ${{ matrix.workspace }} exec pulumi stack init --stack ${{ matrix.name }} || echo "stack already exists"
@@ -96,23 +91,18 @@ jobs:
           # - name: s3
           #   workspace: '@app/s3-backend-test'
           #   use-fork: 'false'
-          #   use-aws-v2: 'false'
           # - name: s3-fork
           #   workspace: '@app/s3-backend-test-with-fork'
           #   use-fork: 'true'
-          #   use-aws-v2: 'false'
           - name: s3-v2
             workspace: '@app/s3-backend-test'
             use-fork: 'false'
-            use-aws-v2: 'true'
           - name: s3-v2-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'true'
-            use-aws-v2: 'true'
           # - name: pulumi
           #   workspace: '@app/pulumi-backend-test'
           #   use-fork: 'false'
-          #   use-aws-v2: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
@@ -140,10 +130,10 @@ jobs:
       - run: pulumi plugin install resource aws v5.9.2
       - name: Login to the S3 backend with AWS SDK v1
         run: pulumi login s3://pulumi-state-backend-benchmarks-state
-        if: matrix.name == 's3' || matrix.name == 's3-fork' && matrix.use-aws-v2 == 'false'
+        if: matrix.name == 's3' || matrix.name == 's3-fork'
       - name: Login to the S3 backend with AWS SDK v2
         run: pulumi login s3://pulumi-state-backend-benchmarks-state?awssdk=v2
-        if: matrix.name == 's3' || matrix.name == 's3-fork' && matrix.use-aws-v2 == 'true'
+        if: matrix.name == 's3-v2' || matrix.name == 's3-v2-fork'
 
       - run: yarn workspace ${{ matrix.workspace }} exec pulumi destroy --stack ${{ matrix.name }} --yes --refresh
         env:
