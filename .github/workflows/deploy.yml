@@ -39,9 +39,9 @@ jobs:
           - name: s3-v2-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'true'
-          # - name: pulumi
-          #   workspace: '@app/pulumi-backend-test'
-          #   use-fork: 'false'
+          - name: pulumi
+            workspace: '@app/pulumi-backend-test'
+            use-fork: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
@@ -100,9 +100,9 @@ jobs:
           - name: s3-v2-fork
             workspace: '@app/s3-backend-test-with-fork'
             use-fork: 'true'
-          # - name: pulumi
-          #   workspace: '@app/pulumi-backend-test'
-          #   use-fork: 'false'
+          - name: pulumi
+            workspace: '@app/pulumi-backend-test'
+            use-fork: 'false'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/commands/yarn_install
