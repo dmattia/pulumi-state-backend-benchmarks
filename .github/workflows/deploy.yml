@@ -144,7 +144,6 @@ jobs:
       - name: Login to the S3 backend with AWS SDK v2
         run: pulumi login s3://pulumi-state-backend-benchmarks-state?awssdk=v2
         if: matrix.name == 's3' || matrix.name == 's3-fork' && matrix.use-aws-v2 == 'true'
-        if: matrix.name == 's3' || matrix.name == 's3-fork'
 
       - run: yarn workspace ${{ matrix.workspace }} exec pulumi destroy --stack ${{ matrix.name }} --yes --refresh
         env:
